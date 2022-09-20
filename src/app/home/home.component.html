@@ -1,0 +1,189 @@
+<section class="banner-7 parallax-bg bg-fixed overlay fullscreen-banner valign-wrapper"
+  data-stellar-background-ratio="0.5">
+  <div class="valign-cell">
+    <div class="container padding-top-160">
+      <div class="text-center">
+        <h1 class="tt-headline loading-bar">
+          <!-- you can use "rotate-1", "letters type", "letters rotate-2", "letters rotate-3", "letters scale", "loading-bar", "slide", "clip is-full-width", "push" -->
+          <span>We're&nbsp;</span>
+          <span class="tt-words-wrapper"
+            style="color: #762741; -webkit-text-stroke-width: 1px; -webkit-text-stroke-color: white">
+            <b class="is-visible">Dedicated</b>
+            <b>Passionate</b>
+            <b>United</b>
+            <b>WIREGRASS</b>
+          </span>
+        </h1>
+
+        <p class="sub-intro lead white-text">Proud Member of the Lightning High School Hockey League</p>
+        <!-- <a class="btn popup-video text-capitalize mt-30 waves-effect waves-light" href="https://www.youtube.com/watch?v=XVfOe5mFbAE">Watch Overview</a> -->
+      </div>
+    </div><!-- /.container -->
+  </div><!-- /.valign-cell -->
+
+</section>
+
+
+<section class="section-padding">
+  <div class="container">
+    <div class="text-center mb-80">
+      <h2 class="section-title text-uppercase">Our Coaches</h2>
+      <p class="section-sub">Our coaches bring a wealth of experience & professionalism to our program. Dedicated to
+        making our players better not only on the ice, but in their daily lives as well.</p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6 col-sm-6">
+        <div class="team-wrapper">
+          <div class="team-img">
+            <img src="../../assets/img/players/scoby.png" class="img-responsive" alt="Image">
+          </div><!-- /.team-img -->
+
+          <div class="team-title">
+            <h3>Jonn Scoby</h3>
+            <span>Varsity Head Coach</span>
+            <p>
+                Joining Wiregrass as the Varsity Head Coach in the Summer of 2022, Coach Scoby 
+                has his sights set on taking the program to the next level and beyond. His experience 
+                has brought a whole new level of excitement to the program</p>
+          </div><!-- /.team-title -->
+
+          <!-- <ul class="team-social-links list-inline text-center">
+                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                          <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                          <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                      </ul> -->
+
+        </div><!-- /.team-wrapper -->
+      </div><!-- /.col-md-4 -->
+
+      <div class="col-md-6 col-sm-6">
+        <div class="team-wrapper">
+          <div class="team-img">
+            <img src="../../assets/img/players/talbot.png" class="img-responsive" alt="Image">
+          </div><!-- /.team-img -->
+
+          <div class="team-title">
+            <h3>Bill Talbot</h3>
+            <span>JV Head Coach</span>
+            <p>Coach Talbot brings a wealth of coaching experience from the Travel level through High School. 
+                He is working closely with Coach Scoby to develop our JV players and prepare them for the next level.</p>
+          </div><!-- /.team-title -->
+
+          <!-- <ul class="team-social-links list-inline text-center">
+                          <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                          <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                          <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                          <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                          <li><a href="#"><i class="fa fa-envelope-o"></i></a></li>
+                      </ul> -->
+
+        </div><!-- /.team-wrapper -->
+      </div><!-- /.col-md-4 -->
+
+    </div>
+
+  </div>
+</section>
+
+
+<section class="content-promo-box banner padding-top-100 padding-bottom-120 gray-bg" *ngIf="potw">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <h2 class="font-30 text-extrabold mb-30 text-uppercase">PLAYER OF THE WEEK</h2>
+        <img src="../../assets/img/players/{{potw.image}}" width="300px">
+      </div>
+      <div class="col-md-8">
+        <p>{{potw.description}}</p>
+        <a [routerLink]="['/players',potw.playerId]"><i class="fa fa-id-card" aria-hidden="true"></i>View Player Profile</a>
+      </div>
+      
+    </div>
+  </div>
+</section>
+
+
+<section id="works" class="section-padding">
+  <div class="container">
+
+    <div class="text-center mb-80">
+      <h2 class="section-title text-uppercase">Upcoming Games</h2>
+      <p class="section-sub">Come Support Wiregrass Hockey at the following upcoming games:</p>
+    </div>
+
+    <div class="portfolio-container">
+      <ul class="portfolio-filter brand-filter text-center">
+        <li class="active waves-effect waves-light" data-group="all" (click)="gameGroupChanged('all')">All</li>
+        <li class=" waves-effect waves-light" data-group="varsity" (click)="gameGroupChanged('varsity')">Varsity</li>
+        <li class=" waves-effect waves-light" data-group="jv" (click)="gameGroupChanged('jv')">JV</li>
+      </ul>
+
+
+      <div class="portfolio portfolio-with-title col-3 gutter mtb-50" *ngIf="upcomingGames && upcomingGames.length">
+        <div *ngFor="let game of upcomingGames" class="portfolio-item" [attr.data-groups]="game.groups">
+          <div class="card">
+            <!-- <div class="card-image waves-effect waves-block waves-light">
+              <img class="activator" src="../assets/img/team_logos/freedom.png" alt="image">
+            </div> -->
+            <div class="card-content">
+              <span class="card-title activator">{{game.varsity?'Varsity':'JV'}} vs {{game.opponent}}</span>
+              <p>{{game.location}}</p>
+              <p>{{game.date?.toDate() | date:'EEEE, MMMM d, y @ h:mm a'}}</p>
+              <a routerLink="schedule" [queryParams]="{ team: game.varsity?'varsity':'jv' }" class="readmore">View full schedule</a>
+            </div>
+            <div class="card-reveal">
+              <span class="card-title">{{game.varsity?'Varsity':'JV'}} vs {{game.opponent}}</span>
+              <p>{{game.location}}</p>
+              <p>{{game.date?.toDate() | date:'EEEE, MMMM d, y  @ h:mm a'}}</p>
+              <a routerLink="schedule" [queryParams]="{ team: game.varsity?'varsity':'jv' }" class="readmore">View full schedule</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div *ngIf="upcomingGames && !upcomingGames.length" class="text-center text-bold">No Games Schedules</div>
+
+    </div><!-- portfolio-container -->
+
+  </div><!-- /.container -->
+</section>
+
+
+<section class="counter-section facts-two banner-10 parallax-bg bg-fixed overlay light-9"
+  data-stellar-background-ratio="0.5">
+  <div class="container">
+    <div class="row text-center mt-30">
+      <div class="col-sm-12">
+        <h2 class="section-title text-uppercase">Varsity Season Stats</h2>
+      </div>
+    </div>
+    <div class="row text-center" *ngIf="seasonStats">
+      <div class="col-sm-3 counter-wrap">
+        <i class="fa fa-4x fa-trophy brand-color"></i>
+        <span class="timer">{{seasonStats.wins}}</span>
+        <span class="count-description">Wins</span>
+      </div> <!-- /.col-sm-3 -->
+
+      <div class="col-sm-3 counter-wrap">
+        <i class="fa fa-4x fa-bullhorn brand-color"></i>
+        <span class="timer">{{seasonStats.goals_for}}</span>
+        <span class="count-description">Goals For</span>
+      </div><!-- /.col-sm-3 -->
+
+      <div class="col-sm-3 counter-wrap">
+        <i class="fa fa-4x fa-plus brand-color"></i>
+        <span class="timer2">{{seasonStats.goalDiff}}</span>
+        <span class="count-description">Goal Differential</span>
+      </div><!-- /.col-sm-3 -->
+
+      <div class="col-sm-3 counter-wrap">
+        <i class="fa fa-4x fa-crosshairs brand-color"></i>
+        <span class="timer">{{seasonStats.shots_for}}</span>
+        <span class="count-description">Shots</span>
+      </div><!-- /.col-sm-3 -->
+    </div>
+  </div><!-- /.container -->
+</section>

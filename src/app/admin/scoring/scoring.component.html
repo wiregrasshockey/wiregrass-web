@@ -1,0 +1,52 @@
+<div class="row">
+    <div class="col-md-12 col-sm-12" *ngIf="!selectedGame">
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="team" id="varsity" [value]="true" [(ngModel)]="showVarsity">
+            <label class="form-check-label" for="varsity">
+                VARSITY
+            </label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="team" id="jv" [value]="false" [(ngModel)]="showVarsity">
+            <label class="form-check-label" for="jv">
+                JV
+            </label>
+        </div>
+        <table class="table table-striped" >
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Opponent</th>
+                <th>Score</th>
+                <th></th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let game of showVarsity?varsityGames:jvGames">
+                    <th scope="row">{{game?.date?.toDate()|date:'MM/dd/yyyy'}}</th>
+                    <td>{{game?.date?.toDate()|date:'h:mm a'}}</td>
+                    <td>{{game.opponent}}</td>
+                    <td>{{game.goals_for}}-{{game.goals_against}}</td>
+                    <td>
+                        <button (click)="selectedGame=game">Score This Game</button>
+                    </td>
+                </tr>
+                <tr *ngIf="showVarsity?!varsityGames.length:!jvGames.length">
+                    <td colspan="5" class="text-center text-bold">No Schedule Available</td>
+                </tr>                                  
+            </tbody>
+        </table>
+    </div>
+    <div class="row" *ngIf="selectedGame">
+        <div class="col-md-12">
+            <h1>
+                {{selectedGame.date?.toDate()|date:'MM/dd/yyyy'}}
+                 : {{selectedGame.date?.toDate()|date:'h:mm a'}} vs 
+                {{selectedGame.opponent}}
+                <button class="btn btn-sm" (click)="selectedGame=undefined">Select A Different Game</button>
+            </h1>
+            
+        </div>
+    </div>
+</div>

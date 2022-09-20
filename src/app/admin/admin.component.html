@@ -1,0 +1,55 @@
+<section class="section-padding" *ngIf="auth.user | async as user; else showLogin">
+    <div class="container" >
+        <div class="text-center mb-40">
+            ADMINISTRATION
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+              <div class="team-wrapper" [routerLink]="'scoring'" routerLinkActive="selected">
+                <div class="team-title">
+                  <h3>SCORE A GAME</h3>
+                </div>
+      
+              </div>
+            </div>
+      
+            <div class="col-md-6 col-sm-6">
+              <div class="team-wrapper" [routerLink]="'photos'" routerLinkActive="selected">
+                <div class="team-title">
+                  <h3>ADD PHOTOS</h3>
+                </div>
+      
+              </div>
+            </div>
+            <router-outlet></router-outlet>
+          </div>
+    </div>
+</section>
+<ng-template #showLogin>
+    <section class="section-padding">
+        <div class="container" >
+            <div class="text-center mb-40">
+                PLEASE LOGIN
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                  <div class="input-field">
+                    <input type="text" name="email" class="validate" id="email" [(ngModel)]="credentails.email">
+                    <label for="email">E-Mail</label>
+                  </div>
+
+                </div><!-- /.col-md-6 -->
+
+                <div class="col-md-6">
+                  <div class="input-field">
+                    <label class="sr-only" for="password">Password</label>
+                    <input id="password" type="password" name="password" class="validate" [(ngModel)]="credentails.password" >
+                  </div>
+                </div><!-- /.col-md-6 -->
+              </div><!-- /.row -->
+              <div class="row">
+                <div class="col-md-12 text-center"><button class="btn btn-sm" (click)="login()">Login</button></div>
+            </div>
+        </div>
+    </section>
+</ng-template>

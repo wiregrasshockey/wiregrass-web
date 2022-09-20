@@ -1,0 +1,78 @@
+<section class="section-padding">
+    <div class="container">
+      <div class="text-center mb-80">
+        <h2 class="section-title text-uppercase">Our Teams</h2>
+        <p class="section-sub">Select the team to view more details</p>
+      </div>
+  
+      <div class="row">
+        <div class="col-md-6 col-sm-6">
+          <div class="team-wrapper" [ngClass]="{'selected':selectedTeam==='varsity'}" (click)="getTeam('varsity')">
+            <div class="team-img">
+              <img src="../../assets/img/varsity_placeholder.png" class="img-responsive" alt="Image">
+            </div>
+  
+            <div class="team-title">
+              <h3>VARSITY</h3>
+              <span>Coach: John Scoby</span>
+              <p *ngIf="varsityStats">Season Record: {{varsityStats.wins}}-{{varsityStats.losses}}-{{varsityStats.ties}}</p>
+              <a routerLink="../schedule/varsity">View Varsity Schedule</a>
+            </div>
+  
+          </div>
+        </div>
+  
+        <div class="col-md-6 col-sm-6">
+          <div class="team-wrapper" [ngClass]="{'selected':selectedTeam==='jv'}" (click)="getTeam('jv')">
+            <div class="team-img">
+              <img src="../../assets/img/jv_placeholder.png" class="img-responsive" alt="Image">
+            </div>
+  
+            <div class="team-title">
+              <h3>JV</h3>
+              <span>Coach: Bill Talbot</span>
+              <p *ngIf="jvStats">Season Record: {{jvStats.wins}}-{{jvStats.losses}}-{{jvStats.ties}}</p>
+            </div>
+  
+          </div>
+        </div>
+  
+      </div>
+  
+    </div>
+    <div class="row mt-50">
+        <div class="col-md-8 col-md-offset-2">
+            <h3>{{(selectedTeam==='varsity')?'VARSITY': 'JV'}} ROSTER</h3>
+            <div class="mt-30"></div>
+
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Goals</th>
+                    <th>Assists</th>
+                    <th>Points</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let player of players">
+                    <th scope="row">{{player.jersey_number}}</th>
+                    <td>{{player.first_name}}</td>
+                    <td>{{player.last_name}}</td>
+                    <td>{{player?.currentSeasonStats?.goals}}</td>
+                    <td>{{player?.currentSeasonStats?.assists}}</td>
+                    <td>{{player?.currentSeasonStats?.points}}</td>
+                    <td><a (click)="viewProfile(player.id)"><i class="fa fa-id-card" aria-hidden="true"></i> View Profile</a></td>
+                </tr>
+                <tr *ngIf="!players.length">
+                    <td colspan="4" class="text-center text-bold">Roster Information Coming Soon</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+  </section>

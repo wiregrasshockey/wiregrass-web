@@ -1,0 +1,74 @@
+<section class="section-padding">
+    <div class="container">
+        <div class="text-center mb-80">
+            <h2 class="section-title text-uppercase">Game Schedules</h2>
+            <p class="section-sub">Select the team to view the schedule</p>
+            <!-- <button (click)="test()">test</button> -->
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+
+                <div class="border-bottom-tab">
+
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" [ngClass]="{'active':selectedTeam==='varsity'}"><a href="#varsity"
+                                role="tab" class="waves-effect waves-dark" data-toggle="tab">Varsity</a></li>
+                        <li role="presentation" [ngClass]="{'active':selectedTeam==='jv'}"><a href="#jv" role="tab"
+                                class="waves-effect waves-dark" data-toggle="tab">JV</a></li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane fade" [ngClass]="{'in active':selectedTeam==='varsity'}" id="varsity">
+                                <ng-container [ngTemplateOutlet]="schedule" [ngTemplateOutletContext]="{team:'varsity'}"></ng-container>
+                            </div>
+                            <div role="tabpanel" class="tab-pane fade" [ngClass]="{'in active':selectedTeam==='jv'}" id="jv">
+                                <ng-container [ngTemplateOutlet]="schedule" [ngTemplateOutletContext]="{team:'jv'}"></ng-container> 
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<ng-template #schedule let-team='team'>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Opponent</th>
+                    <th>Location</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let game of team==='varsity'?varsityGames:jvGames">
+                        <th scope="row">{{game?.date?.toDate()|date:'MM/dd/yyyy'}}</th>
+                        <td>{{game?.date?.toDate()|date:'h:mm a'}}</td>
+                        <td>{{game.opponent}}</td>
+                        <td>{{game.location}}</td>
+                        <td>
+                            <div *ngIf="game.complete">
+                                <span *ngIf="game.tie">TIED {{game.goals_for}}-{{game.goals_against}}</span>
+                                <span *ngIf="!game.tie">{{game.goals_for>game.goals_against?'W':'L'}} {{game.goals_for}}-{{game.goals_against}}</span>
+                                <a routerLink="games" [routerLink]="['/games',game.id]" class="ml-10">View Game Summary</a>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr *ngIf="team==='varsity'?!varsityGames.length:!jvGames.length">
+                        <td colspan="5" class="text-center text-bold">No Schedule Available</td>
+                    </tr>                                  
+                </tbody>
+            </table>
+        </div>
+    </div>
+</ng-template>

@@ -1,0 +1,17 @@
+.logo-brand-text{
+    font-family: Raleway; 
+    font-weight: 700; 
+    text-transform: uppercase;
+    color:#FFFFFF;
+    width: 325px !important;
+    margin-top: -30px;
+}
+
+.sticky  .logo-brand-text {
+    margin-top: -15px !important; 
+}
+@media screen and (max-width: 767px) {
+    .logo-brand-text{
+        display: none !important;
+    }
+}

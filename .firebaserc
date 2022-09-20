@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "wiregrasshockey": {
+      "hosting": {
+        "wiregrass-web": [
+          "wiregrasshockey"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "wiregrasshockey"
+  }
+}

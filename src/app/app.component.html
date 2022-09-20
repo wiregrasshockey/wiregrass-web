@@ -1,0 +1,89 @@
+<!--header start-->
+<header id="header" class="tt-nav transparent-header ">
+
+  <div class="header-sticky semi-transparent">
+
+    <div class="container">
+
+      <div id="materialize-menu" class="menuzord">
+
+        <!--logo start-->
+        <a href="index.html" class="logo-brand">
+          <img src="../assets/img/WR_Logo.png" alt="">
+          <div class="logo-brand-text">Wiregrass Hockey</div>
+        </a>
+        <!--logo end-->
+
+        <!--mega menu start-->
+        <ul class="menuzord-menu pull-right light">
+          <li class="active"><a routerLink="home">Home</a></li>
+
+          <li><a routerLink="teams">Teams</a></li>
+
+          <li><a routerLink="schedule" [queryParams]="{ team: 'varsity' }">Schedule</a></li>
+
+          <!-- <li><a href="javascript:void(0)">Stats</a></li> -->
+
+          <!-- <li><a href="javascript:void(0)">Blog</a></li> -->
+
+          <!-- <li><a href="javascript:void(0)">Contact</a></li> -->
+        </ul>
+        <!--mega menu end-->
+
+      </div>
+    </div>
+  </div>
+</header>
+<!--header end-->
+
+<router-outlet></router-outlet>
+
+<!--footer start -->
+<footer class="footer footer-four">
+  <div class="primary-footer brand-bg text-center">
+    <div class="container">
+
+      <a href="#top" class="page-scroll btn-floating btn-large pink back-top waves-effect waves-light"
+        data-section="#top">
+        <i class="material-icons">&#xE316;</i>
+      </a>
+
+      <ul class="social-link tt-animate ltr mt-20">
+        <li><a href="https://www.facebook.com/groups/wiregrasshockeyclub" target="_blank"><i
+              class="fa fa-facebook"></i></a></li>
+        <!-- <li><a href="#"><i class="fa fa-twitter"></i></a></li> -->
+        <li><a href="https://www.instagram.com/wrhs.hockey" target="_blank"><i class="fa fa-instagram"></i></a></li>
+      </ul>
+
+      <hr class="mt-15">
+
+      <div class="row">
+        <div class="col-md-12">
+          <div class="footer-logo">
+            <img src="../assets/img/WR.png" alt="">
+          </div>
+
+          <span class="copy-text">Copyright &copy; {{today | date:'YYYY'}} <a href="#">Wiregrass Ranch Hockey Club</a>
+            &nbsp; | &nbsp; All Rights Reserved</span>
+          <div class="footer-intro">
+            <p>Many Photos Courtesy of Kristen Freed Photography. <a routerLink="photo-attribution">More Info</a></p>
+          </div>
+        </div><!-- /.col-md-12 -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+  </div><!-- /.primary-footer -->
+
+  <div class="secondary-footer brand-bg darken-2 text-center">
+    <div class="container">
+      <ul>
+        <li><a routerLink="home">Home</a></li>
+        <li><a routerLink="teams">Team</a></li>
+        <li><a routerLink="schedule" [queryParams]="{ team: 'varsity' }">Schedule</a></li>
+        <!-- <li><a href="#">Stats</a></li> -->
+        <!-- <li><a href="#">Blog</a></li> -->
+        <!-- <li><a href="#">Contact us</a></li> -->
+      </ul>
+    </div><!-- /.container -->
+  </div><!-- /.secondary-footer -->
+</footer>
+<!--footer end-->
