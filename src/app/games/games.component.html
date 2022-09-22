@@ -12,8 +12,8 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-3">
                         <figure class="team-img text-center">
-                            <img *ngIf="game.image" [src]="gameImageUrl | async" class="img-responsive" alt="Image">
-                            <img  *ngIf="!game.image" src="../../assets/img/wrhs_logo.png" class="img-responsive text-center" alt="Image">
+                            <img *ngIf="gameImageUrl" [src]="gameImageUrl" class="img-responsive" alt="Image">
+                            <img  *ngIf="!gameImageUrl" src="../../assets/img/wrhs_logo.png" class="img-responsive text-center" alt="Image">
                             <h2 class="text-center bold">
                                 <span *ngIf="game.tie">TIED {{game.goals_for}}-{{game.goals_against}}</span>
                                 <span *ngIf="!game.tie">{{game.goals_for>game.goals_against?'WON':'LOST'}} {{game.goals_for}}-{{game.goals_against}}</span>

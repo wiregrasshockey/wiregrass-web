@@ -34,10 +34,13 @@ export class GamesComponent implements OnInit {
       this.firestore.doc<Game>(`games/${this.selectedGame}`).valueChanges({idField: 'id'}).subscribe({
         next: (g: any) => {
           this.game = g;
-          if(this.game.image){
-            const ref = this.storage.ref(`games/${this.game.id}/${this.game.id}.jpg`);
-            this.gameImageUrl = ref.getDownloadURL();
-          }
+          const ref = this.storage.ref(`games/${this.game.id}/${this.game.id}.jpg`);
+          ref.getDownloadURL().subscribe({
+            next: (url) => {
+              this.gameImageUrl = url;
+            },
+            error: (e) => console.error(e)
+          });
         }
       })
       this.firestore.collection<Player>(`players`, ref => ref.orderBy('jersey_number', 'asc')).valueChanges({idField: 'id'}).subscribe({
