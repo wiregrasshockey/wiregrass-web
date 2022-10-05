@@ -1,3 +1,4 @@
+import { PlayerPenaltiesModalComponent } from './shared/modals/player-penalties-modal/player-penalties-modal.component';
 import { PhotoAttributionComponent } from './photo-attribution/photo-attribution.component';
 import { GamesComponent } from './games/games.component';
 import { NgModule } from '@angular/core';
@@ -17,6 +18,7 @@ import { GraphQLModule } from './graphql.module';
 import { HomeComponent } from './home/home.component';
 import { PlayersComponent } from './players/players.component';
 import { AdminModule } from './admin/admin.module';
+import { MatDialogModule } from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,8 @@ import { AdminModule } from './admin/admin.module';
     PlayersComponent,
     ScheduleComponent,
     GamesComponent,
-    PhotoAttributionComponent
+    PhotoAttributionComponent,
+    PlayerPenaltiesModalComponent
   ],
   imports: [
     BrowserModule,
@@ -37,7 +40,8 @@ import { AdminModule } from './admin/admin.module';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    AdminModule
+    AdminModule,
+    MatDialogModule
   ],
   providers: [
     ScreenTrackingService,UserTrackingService,

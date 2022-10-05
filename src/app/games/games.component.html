@@ -40,6 +40,10 @@
                                         <th>Goals</th>
                                         <th>Assists</th>
                                         <th>Points</th>
+                                        <th>+/-</th>
+                                        <th>Pen</th>
+                                        <th>FOT/FOW</th>
+                                        <th>FO %</th>
                                         <th></th>
                                     </tr>
                                     </thead>
@@ -51,10 +55,17 @@
                                             <td>{{stat.goals}}</td>
                                             <td>{{stat.assists}}</td>
                                             <td>{{stat.points}}</td>
+                                            <td>{{stat.plus_minus}}</td>
+                                            <td>
+                                                <div *ngIf="stat.penalties.length" (click)="showPlayerPenalties(stat)" style="font-weight: 700;text-decoration:underline">{{stat.penalties.length}}</div>
+                                                <span *ngIf="!stat.penalties.length">0</span>
+                                            </td>
+                                            <td>{{stat.faceoffs_taken}}/{{stat.faceoffs_won}}</td>
+                                            <td>{{stat.faceoffs_pct}}</td>
                                             <td><a [routerLink]="['/players',stat.playerId]"><i class="fa fa-id-card" aria-hidden="true"></i> View Profile</a></td>
                                         </tr>
                                         <tr *ngIf="!gameStats?.length">
-                                            <td colspan="5" class="text-center text-bold">No Stats Available</td>
+                                            <td colspan="11" class="text-center text-bold">No Stats Available</td>
                                         </tr>                                  
                                     </tbody>
                                 </table>

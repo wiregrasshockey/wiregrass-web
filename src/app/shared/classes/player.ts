@@ -20,6 +20,13 @@ export class Season {
     
 }
 
+export class PlayerPenalty {
+
+    public type: string = "";
+    public length?: string;
+
+}
+
 export class PlayerStats {
 
     public goals!: number;
@@ -27,5 +34,10 @@ export class PlayerStats {
     public points!: number;
     public varsity!: boolean;
     public date!: Timestamp;
+    public plus_minus!: number;
+    public penalties!: PlayerPenalty[];
+    public faceoffs_won!: number;
+    public faceoffs_taken!: number;
+    public game!: string;
 
 }

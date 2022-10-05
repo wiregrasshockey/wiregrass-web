@@ -1,0 +1,9 @@
+<h1 mat-dialog-title>Player Penalties: {{data.stat.first_name}} {{data.stat.last_name}}</h1>
+<div mat-dialog-content>
+  <div *ngFor="let penalty of data.stat.penalties">
+    {{penalty.type}} - {{penalty.length}}
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button class="btn btn-sm btn-primary" (click)="dialogRef.close()">Ok</button>
+</div>

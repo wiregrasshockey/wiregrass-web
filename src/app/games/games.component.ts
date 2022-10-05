@@ -1,12 +1,14 @@
+import { PlayerPenaltiesModalComponent } from './../shared/modals/player-penalties-modal/player-penalties-modal.component';
 import { Observable } from 'rxjs';
 import { GameStat } from './../shared/classes/game';
 import { Player, PlayerStats, Season } from './../shared/classes/player';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
 import { ActivatedRoute } from '@angular/router';
 import { Game } from '../shared/classes/game';
 import { environment } from 'src/environments/environment';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 
 @Component({
   templateUrl: './games.component.html',
@@ -23,7 +25,8 @@ export class GamesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private firestore: AngularFirestore,
-    private storage: AngularFireStorage
+    private storage: AngularFireStorage,
+    public dialog: MatDialog
   ) {
 
   }
@@ -61,6 +64,16 @@ export class GamesComponent implements OnInit {
                   stat.goals = ps.goals;
                   stat.assists = ps.assists;
                   stat.points = ps.points;
+                  stat.faceoffs_taken = ps.faceoffs_taken || 0;
+                  stat.faceoffs_won = ps.faceoffs_won || 0;
+                  stat.penalties = ps.penalties || [];
+                  stat.plus_minus = ps.plus_minus || 0;
+                  const pct = (stat.faceoffs_won/stat.faceoffs_taken*100);
+                  if(pct===100){
+                    stat.faceoffs_pct = '100%';  
+                  } else {
+                    stat.faceoffs_pct = !isNaN(pct)?pct.toPrecision(2)+'%':'N/A';
+                  }
                   gs.push(stat);
                 }
               })
@@ -72,4 +85,12 @@ export class GamesComponent implements OnInit {
     });
   }
 
+  showPlayerPenalties(stat: GameStat){
+    this.dialog.open(PlayerPenaltiesModalComponent,{
+      data: {
+        stat: stat
+      }
+    });
+  }
 }
+

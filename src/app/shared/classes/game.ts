@@ -1,3 +1,4 @@
+import { PlayerPenalty } from './player';
 import { Timestamp } from "firebase/firestore";
 
 export class Game {
@@ -28,5 +29,10 @@ export class GameStat {
     public goals!: number;
     public assists!: number;
     public points!: number;
+    public plus_minus!: number;
+    public penalties!: PlayerPenalty[];
+    public faceoffs_won!: number;
+    public faceoffs_taken!: number;
+    public faceoffs_pct!: string;
 
 }
